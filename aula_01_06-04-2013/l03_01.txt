@@ -1,0 +1,39 @@
+10:15:46 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WTESTE  NUMBER;
+  3    "ID DE FUNC" NUMBER;
+  4    "abc def" NUMBER;
+  5  BEGIN
+  6      WTESTE       := 10;
+  7      "ID DE FUNC" := 20;
+  8      "ABC DEF"    := 30;
+  9* END;
+10:15:53 Fabricio Nogueira: /
+    "ABC DEF"    := 30;
+     *
+ERROR at line 8:
+ORA-06550: line 8, column 6:
+PLS-00201: identifier 'ABC DEF' must be declared
+ORA-06550: line 8, column 6:
+PL/SQL: Statement ignored 
+
+
+10:15:55 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WTESTE  NUMBER;
+  3    "ID DE FUNC" NUMBER;
+  4    "ABC DEF" NUMBER;
+  5  BEGIN
+  6      WTESTE       := 10;
+  7      "ID DE FUNC" := 20;
+  8      "ABC DEF"    := 30;
+  9* END;
+10:16:14 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:16:15 Fabricio Nogueira: spool off

@@ -1,0 +1,55 @@
+14:11:34 Fabricio Nogueira: variable msg varchar2(100);
+14:12:09 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    VALOR       NUMBER := &VAL;
+  3    BEGIN
+  4      IF VALOR > 0 THEN
+  5           :MSG := 'Valor maior que zero';
+  6      ELSIF VALOR = 0 THEN
+  7           :MSG := 'Valor igual a zero';
+  8      ELSE
+  9           :MSG := 'Valor menor que zero';
+ 10      END IF;
+ 11* END;
+14:13:10 Fabricio Nogueira: /
+Enter value for val: 5
+old   2:   VALOR       NUMBER := &VAL;
+new   2:   VALOR       NUMBER := 5;
+
+PL/SQL procedure successfully completed.
+
+14:13:16 Fabricio Nogueira: print msg;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+Valor maior que zero                                                            
+
+14:13:33 Fabricio Nogueira: /
+Enter value for val: -1
+old   2:   VALOR       NUMBER := &VAL;
+new   2:   VALOR       NUMBER := -1;
+
+PL/SQL procedure successfully completed.
+
+14:13:38 Fabricio Nogueira: print msg;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+Valor menor que zero                                                            
+
+14:13:46 Fabricio Nogueira: /
+Enter value for val: 0
+old   2:   VALOR       NUMBER := &VAL;
+new   2:   VALOR       NUMBER := 0;
+
+PL/SQL procedure successfully completed.
+
+14:13:50 Fabricio Nogueira: print msg;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+Valor igual a zero                                                              
+
+14:13:56 Fabricio Nogueira: spool off

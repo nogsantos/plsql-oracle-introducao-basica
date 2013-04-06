@@ -1,0 +1,91 @@
+14:34:48 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    CONTA      NUMBER := 0;
+  3  BEGIN
+  4    <<INICIO>>
+  5    CONTA := CONTA + 1;
+  6    IF CONTA < 5 THEN
+  7        GOTO INICIO;
+  8    END IF;
+  9* END;
+14:35:37 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+14:35:38 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    CONTA      NUMBER := 0;
+  3  BEGIN
+  4    <<INICIO>>
+  5    CONTA := CONTA + 1;
+  6    IF CONTA < 5 THEN
+  7      begin
+  8          :msg := :msg + conta;
+  9          GOTO INICIO;
+ 10      end;
+ 11    END IF;
+ 12* END;
+14:36:49 Fabricio Nogueira: /
+DECLARE
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at line 8 
+
+
+14:36:50 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    CONTA      NUMBER := 0;
+  3  BEGIN
+  4    <<INICIO>>
+  5    CONTA := CONTA + 1;
+  6    IF CONTA < 5 THEN
+  7      begin
+  8          :msg := :msg||' - '|| conta;
+  9          GOTO INICIO;
+ 10      end;
+ 11    END IF;
+ 12* END;
+14:37:39 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+14:37:41 Fabricio Nogueira: print msg;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+Salário = 3197.92 - 1 - 2 - 3 - 4                                               
+
+14:37:46 Fabricio Nogueira: variable msg2 varchar2(100);
+14:38:21 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    CONTA      NUMBER := 0;
+  3  BEGIN
+  4    <<INICIO>>
+  5    CONTA := CONTA + 1;
+  6    IF CONTA < 5 THEN
+  7      begin
+  8          :msg2 := :msg2||' - '|| conta;
+  9          GOTO INICIO;
+ 10      end;
+ 11    END IF;
+ 12* END;
+14:38:32 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+14:38:34 Fabricio Nogueira: print msg2;
+
+MSG2                                                                            
+--------------------------------------------------------------------------------
+ - 1 - 2 - 3 - 4                                                                
+
+14:38:40 Fabricio Nogueira: spool off

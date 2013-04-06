@@ -1,0 +1,34 @@
+11:09:32 Fabricio Nogueira: VARIABLE P1 VARCHAR2(1000);
+11:09:57 Fabricio Nogueira: VARIABLE P2 VARCHAR2(1000);
+11:10:16 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WTM        TIMESTAMP := CURRENT_TIMESTAMP;
+  3    WTM_TZ     TIMESTAMP WITH TIME ZONE := SYSTIMESTAMP;
+  4    WTM_LTZ    TIMESTAMP WITH LOCAL TIME ZONE := LOCALTIMESTAMP;
+  5    IDS        INTERVAL DAY TO SECOND := NUMTODSINTERVAL (1125.3, 'MINUTE');
+  6    IYM        INTERVAL YEAR TO MONTH := NUMTOYMINTERVAL (25.3, 'MONTH');
+  7  BEGIN
+  8    :P1 := WTM||' | '||WTM_TZ||' | '||WTM_LTZ;
+  9    :P2 := IDS||' | '||IYM;
+ 10* END;
+11:11:25 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+11:11:28 Fabricio Nogueira: print P1;
+
+P1                                                                              
+--------------------------------------------------------------------------------
+06-APR-13 11.11.28.240788 AM | 06-APR-13 11.11.28.240850 AM -03:00 | 06-APR-13 1
+1.11.28.240863 AM                                                               
+                                                                                
+
+11:11:37 Fabricio Nogueira: print P2;
+
+P2                                                                              
+--------------------------------------------------------------------------------
++00 18:45:18.000000 | +02-01                                                    
+
+11:11:43 Fabricio Nogueira: spool off

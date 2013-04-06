@@ -1,0 +1,100 @@
+10:33:39 Fabricio Nogueira: VARIABLE P1 NUMBER;
+10:33:56 Fabricio Nogueira: VARIABLE P2 NUMBER;
+10:34:14 Fabricio Nogueira: VARIABLE P3 NUMBER;
+10:34:27 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM1  NUMBER;
+  3    WNUM2  NUMBER(38, -4);
+  4    WNUM3  NUMBER(38, 127);
+  5  BEGIN
+  6    WNUM1 := 9.99E125;
+  7    WNUM2 := 38925;
+  8    WNUM3 := 123456789987654321.0E-130;
+  9    :P1   := WNUM1;
+ 10    :P2   := WNUM2;
+ 11    :P3   := WNUM3;
+ 12* END
+10:36:12 Fabricio Nogueira: /
+END
+  *
+ERROR at line 12:
+ORA-06550: line 12, column 3:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following: 
+; <an identifier> <a double-quoted delimited-identifier>
+The symbol ";" was substituted for "end-of-file" to continue. 
+
+
+10:36:14 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM1  NUMBER;
+  3    WNUM2  NUMBER(38, -4);
+  4    WNUM3  NUMBER(38, 127);
+  5  BEGIN
+  6    WNUM1 := 9.99E125;
+  7    WNUM2 := 38925;
+  8    WNUM3 := 123456789987654321.0E-130;
+  9    :P1   := WNUM1;
+ 10    :P2   := WNUM2;
+ 11    :P3   := WNUM3;
+ 12* END;
+10:36:33 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:36:34 Fabricio Nogueira: print
+
+        P1                                                                      
+----------                                                                      
+9.990E+125                                                                      
+
+
+        P2                                                                      
+----------                                                                      
+     40000                                                                      
+
+
+        P3                                                                      
+----------                                                                      
+1.235E-113                                                                      
+
+10:36:39 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM1  NUMBER;
+  3    WNUM2  NUMBER(33, -4);
+  4    WNUM3  NUMBER(33, 127);
+  5  BEGIN
+  6    WNUM1 := 9.99E125;
+  7    WNUM2 := 38925;
+  8    WNUM3 := 123456789987654321.0E-130;
+  9    :P1   := WNUM1;
+ 10    :P2   := WNUM2;
+ 11    :P3   := WNUM3;
+ 12* END;
+10:36:55 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:36:57 Fabricio Nogueira: print
+
+        P1                                                                      
+----------                                                                      
+9.990E+125                                                                      
+
+
+        P2                                                                      
+----------                                                                      
+     40000                                                                      
+
+
+        P3                                                                      
+----------                                                                      
+1.235E-113                                                                      
+
+10:37:00 Fabricio Nogueira: spool off

@@ -1,0 +1,13 @@
+DECLARE
+  CONTA      NUMBER := 0;
+BEGIN
+  <<INICIO>>
+  CONTA := CONTA + 1;
+  IF CONTA < 5 THEN
+    begin
+        :msg2 := :msg2||' - '|| conta;
+        GOTO INICIO;
+    end;
+  END IF;
+END;
+/

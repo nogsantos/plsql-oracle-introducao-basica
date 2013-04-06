@@ -1,0 +1,22 @@
+10:48:29 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WVARCHAR2          VARCHAR2(32767);
+  3    WVARCHAR           VARCHAR(100);
+  4  BEGIN
+  5    WVARCHAR2    := 'ABC';
+  6    WVARCHAR     := WVARCHAR2;
+  7    :P1          := '*'||WVARCHAR||'*';
+  8* END;
+10:49:28 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:49:31 Fabricio Nogueira: print P1;
+
+P1                                                                              
+--------------------------------------------------------------------------------
+*ABC*                                                                           
+
+10:49:47 Fabricio Nogueira: spool off

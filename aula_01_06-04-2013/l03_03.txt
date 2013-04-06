@@ -1,0 +1,15 @@
+10:29:09 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      "END"  VARCHAR2(10);
+  3      END_CASA      VARCHAR2(20);
+  4  BEGIN
+  5      "END"    := 'RUA A';
+  6       END_CASA := 'RUA B S/N.';
+  7* END;
+10:30:02 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:30:04 Fabricio Nogueira: spool off

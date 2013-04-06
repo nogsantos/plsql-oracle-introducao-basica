@@ -1,0 +1,38 @@
+10:26:56 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    VALOR           VARCHAR2(10);
+  3    END_CASA        VARCHAR2(20);
+  4  BEGIN
+  5    VALOR    := -- A atribuição será feita na outra linha 'RUA A';
+  6    END_CASA := /* a atribuição virá a seguir */ 'RUA B S/N';
+  7* END;
+10:27:50 Fabricio Nogueira: /
+  END_CASA := /* a atribuição virá a seguir */ 'RUA B S/N';
+           *
+ERROR at line 6:
+ORA-06550: line 6, column 12:
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+. ( * @ % & = - + ; < / > at in is mod remainder not rem 
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2 
+like4 likec between || multiset member submultiset
+The symbol "* was inserted before "=" to continue. 
+
+
+10:27:51 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    VALOR           VARCHAR2(10);
+  3    END_CASA        VARCHAR2(20);
+  4  BEGIN
+  5    VALOR    := --A atribuição será feita na outra linha 
+  6                  'RUA A';
+  7    END_CASA := /*a atribuição virá a seguir */ 'RUA B S/N';
+  8* END;
+10:28:45 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:28:46 Fabricio Nogueira: spool off

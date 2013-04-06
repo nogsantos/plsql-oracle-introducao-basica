@@ -1,0 +1,40 @@
+13:28:28 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    ZERO        CONSTANT NUMBER(1) DEFAULT 0;
+  3    NULO        CONSTANT NUMBER(1) := 0;
+  4    V_COD       NUMBER(4)          := 0;
+  5    V_TEXTO     VARCHAR2(100);
+  6    V_DATA      DATE NOT NULL      := SYSDATE;
+  7  BEGIN
+  8    V_COD := ZERO;
+  9* END;
+13:29:05 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+13:29:06 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    ZERO        CONSTANT NUMBER(1) DEFAULT 0;
+  3    NULO        CONSTANT NUMBER(1) := 0;
+  4    V_COD       NUMBER(4)          := 0;
+  5    V_TEXTO     VARCHAR2(100);
+  6    V_DATA      DATE NOT NULL      := SYSDATE;
+  7  BEGIN
+  8    V_COD := ZERO;
+  9    ZERO  := NULO; 
+ 10* END;
+13:29:33 Fabricio Nogueira: /
+  ZERO  := NULO; 
+  *
+ERROR at line 9:
+ORA-06550: line 9, column 3:
+PLS-00363: expression 'ZERO' cannot be used as an assignment target
+ORA-06550: line 9, column 3:
+PL/SQL: Statement ignored 
+
+
+13:29:35 Fabricio Nogueira: spool off

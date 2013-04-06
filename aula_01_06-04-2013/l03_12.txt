@@ -1,0 +1,22 @@
+10:54:12 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  SELECT CD_MAT, ROWID FROM FUNC
+  2*  WHERE ROWNUM < 10
+10:54:36 Fabricio Nogueira: /
+
+    CD_MAT ROWID                                                                
+---------- ------------------                                                   
+        10 AAAE8PAAEAAAAPPAAA                                                   
+        11 AAAE8PAAEAAAAPMAAA                                                   
+        20 AAAE8PAAEAAAAPPAAB                                                   
+        30 AAAE8PAAEAAAAPPAAC                                                   
+        50 AAAE8PAAEAAAAPPAAD                                                   
+        60 AAAE8PAAEAAAAPPAAE                                                   
+        70 AAAE8PAAEAAAAPPAAF                                                   
+        90 AAAE8PAAEAAAAPPAAG                                                   
+       100 AAAE8PAAEAAAAPPAAH                                                   
+
+9 rows selected.
+
+10:54:39 Fabricio Nogueira: spool off

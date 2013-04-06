@@ -1,0 +1,25 @@
+11:28:52 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    SUBTYPE DATA    IS DATE NOT NULL;
+  3    SUBTYPE TEXTO   IS VARCHAR2(100);
+  4    SUBTYPE CODIGO  IS NUMBER(5);
+  5    DT_HOJE         DATA := SYSDATE;
+  6    DESCRICAO       TEXTO(100);
+  7    CD_MAT          CODIGO(5);
+  8  BEGIN
+  9    DT_HOJE    := SYSDATE;
+ 10    DESCRICAO  := 'TESTE DE SUBTIPO';
+ 11    CD_MAT     := 123456;
+ 12    :P1        := DESCRICAO||'-'||CD_MAT||'-'||DT_HOJE;
+ 13* END;
+11:29:46 Fabricio Nogueira: /
+DECLARE
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: number precision too large
+ORA-06512: at line 11 
+
+
+11:29:48 Fabricio Nogueira: spool off

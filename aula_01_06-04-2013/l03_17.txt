@@ -1,0 +1,23 @@
+11:30:57 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    DT_HOJE      DATE := SYSDATE;
+  3    DESCRICAO    VARCHAR2(100) := '123';
+  4    CD_MAT       NUMBER(5)     := 0;
+  5  BEGIN
+  6    CD_MAT    := DESCRICAO;
+  7    DESCRICAO := DT_HOJE;
+  8    :P1       := DESCRICAO||'-'||CD_MAT||'-'||DT_HOJE;
+  9* END;
+11:31:42 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+11:31:43 Fabricio Nogueira: print P1;
+
+P1                                                                              
+--------------------------------------------------------------------------------
+06-APR-13-123-06-APR-13                                                         
+
+11:31:47 Fabricio Nogueira: spool off

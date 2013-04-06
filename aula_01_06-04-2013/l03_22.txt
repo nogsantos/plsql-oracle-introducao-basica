@@ -1,0 +1,30 @@
+13:47:30 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  BEGIN
+  2    <<EXT>>
+  3    DECLARE
+  4        WCOD             NUMBER := 1;
+  5        BEGIN
+  6            DECLARE
+  7                WCOD           NUMBER:= 5;
+  8            BEGIN
+  9                IF WCOD <> EXT.WCOD THEN
+ 10                    :MSG := 'DIFERENTE';
+ 11                ELSE
+ 12                    :MSG := 'IGUAL';
+ 13                END IF;
+ 14            END;
+ 15      END;
+ 16* END;
+13:49:01 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+13:49:03 Fabricio Nogueira: print MSG;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+DIFERENTE                                                                       
+
+13:49:10 Fabricio Nogueira: spool off

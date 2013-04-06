@@ -1,0 +1,27 @@
+13:35:48 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    V_COD         NUMBER(4)           := 0;
+  3    V_DATA        DATE       NOT NULL := SYSDATE;
+  4  --
+  5    WCOD          V_COD%TYPE NOT NULL := 1234;
+  6    WDATA         V_DATA%TYPE         := SYSDATE;
+  7  --
+  8    WDEP          DEPTO.CD_DEPTO%TYPE;
+  9  BEGIN
+ 10    WDEP    := NULL;
+ 11    V_COD   := 1;
+ 12    WDATA   := NULL;
+ 13* END;
+13:36:30 Fabricio Nogueira: /
+  WDATA   := NULL;
+             *
+ERROR at line 12:
+ORA-06550: line 12, column 14:
+PLS-00382: expression is of wrong type
+ORA-06550: line 12, column 3:
+PL/SQL: Statement ignored 
+
+
+13:36:33 Fabricio Nogueira: spool l03_20.txt

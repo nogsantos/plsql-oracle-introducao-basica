@@ -1,0 +1,39 @@
+14:25:55 Fabricio Nogueira: select vl_sal from func where cd_mat = 150;
+
+    VL_SAL                                                                      
+----------                                                                      
+    2780.8                                                                      
+
+14:26:20 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      SALARIO      NUMBER;
+  3      ENDROW       ROWID;
+  4  BEGIN
+  5      SELECT VL_SAL, ROWID INTO SALARIO, ENDROW
+  6      FROM FUNC
+  7      WHERE CD_MAT = 150;
+  8      IF SALARIO < 2000 THEN
+  9          SALARIO := SALARIO * 1.3;
+ 10      ELSIF SALARIO IS NULL THEN
+ 11          SALARIO := 1500;
+ 12      ELSE
+ 13          SALARIO := SALARIO * 1.15;
+ 14      END IF;
+ 15      UPDATE FUNC SET VL_SAL = SALARIO
+ 16      WHERE ROWID = ENDROW;
+ 17     :MSG := 'Salário = '||SALARIO;
+ 18       COMMIT;
+ 19* END;
+14:28:21 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+14:28:23 Fabricio Nogueira: print msg;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+Salário = 3197.92                                                               
+
+14:28:29 Fabricio Nogueira: spool off

@@ -1,0 +1,36 @@
+10:40:44 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM  NUMBER;
+  3    WPLS  PLS_INTEGER    := 2147483647;
+  4    WBIN  BINARY_INTEGER := 2147483647;
+  5  BEGIN
+  6    WNUM := WBIN + 1;
+  7    WNUM := WPLS + 1;
+  8* END;
+10:41:45 Fabricio Nogueira: /
+DECLARE
+*
+ERROR at line 1:
+ORA-01426: numeric overflow
+ORA-06512: at line 6 
+
+
+10:41:48 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM  NUMBER;
+  3    WPLS  NUMBER := 2147483647;
+  4    WBIN  NUMBER := 2147483647;
+  5  BEGIN
+  6    WNUM := WBIN + 1;
+  7    WNUM := WPLS + 1;
+  8* END;
+10:42:33 Fabricio Nogueira: 
+10:42:34 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:42:36 Fabricio Nogueira: spool off

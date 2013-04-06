@@ -1,0 +1,107 @@
+13:41:24 Fabricio Nogueira: VARIABLE MSG VARCHAR2(200);
+13:41:44 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM           NUMBER       := 12;
+  3    WCHAR          VARCHAR2(20) := 'WCHAR EXTERNA';
+  4    WUNICO         NUMBER       := 5;
+  5  BEGIN
+  6    DECLARE
+  7      WNUM         NUMBER       := 10;
+  8      WCHAR        VARCHAR2(20) := 'WCHAR INTERNA';
+  9      WTOTAL       NUMBER;
+ 10      BEGIN
+ 11        WTOTAL := WNUM + WUNICO;
+ 12        :MSG   := WCHAR||'-'||WTOTAL;
+ 13      END;
+ 14* END;
+13:42:49 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+13:42:51 Fabricio Nogueira: print MSG;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+WCHAR INTERNA-15                                                                
+
+13:43:04 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM           NUMBER       := 12;
+  3    WCHAR          VARCHAR2(20) := 'WCHAR EXTERNA';
+  4    WUNICO         NUMBER       := 5;
+  5  BEGIN
+  6    DECLARE
+  7      WNUM         NUMBER       := 10;
+  8      WCHAR        VARCHAR2(20) := 'WCHAR INTERNA';
+  9      WTOTAL       NUMBER;
+ 10      BEGIN
+ 11        WTOTAL := WNUM + WUNICO;
+ 12        :MSG   := WCHAR||'-'||WTOTAL;
+ 13      END;
+ 14      WUNICO := WNUM;
+ 15* END;
+13:43:47 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+13:43:48 Fabricio Nogueira: print MSG;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+WCHAR INTERNA-15                                                                
+
+13:44:01 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM           NUMBER       := 12;
+  3    WCHAR          VARCHAR2(20) := 'WCHAR EXTERNA';
+  4    WUNICO         NUMBER       := 5;
+  5  BEGIN
+  6    DECLARE
+  7      WNUM         NUMBER       := 10;
+  8      WCHAR        VARCHAR2(20) := 'WCHAR INTERNA';
+  9      WTOTAL       NUMBER;
+ 10      BEGIN
+ 11        WTOTAL := WNUM + WUNICO;
+ 12        :MSG   := WCHAR||'-'||WTOTAL;
+ 13      END;
+ 14      :MSG := WCHAR;
+ 15* END;
+13:45:00 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+13:45:01 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WNUM           NUMBER       := 12;
+  3    WCHAR          VARCHAR2(20) := 'WCHAR EXTERNA';
+  4    WUNICO         NUMBER       := 5;
+  5  BEGIN
+  6    DECLARE
+  7      WNUM         NUMBER       := 10;
+  8      WCHAR        VARCHAR2(20) := 'WCHAR INTERNA';
+  9      WTOTAL       NUMBER;
+ 10      BEGIN
+ 11        WTOTAL := WNUM + WUNICO;
+ 12        :MSG   := WCHAR||'-'||WTOTAL;
+ 13      END;
+ 14      :MSG := WTOTAL;
+ 15* END;
+13:45:36 Fabricio Nogueira: /
+    :MSG := WTOTAL;
+            *
+ERROR at line 14:
+ORA-06550: line 14, column 13:
+PLS-00201: identifier 'WTOTAL' must be declared
+ORA-06550: line 14, column 5:
+PL/SQL: Statement ignored 
+
+
+13:45:37 Fabricio Nogueira: spool off
