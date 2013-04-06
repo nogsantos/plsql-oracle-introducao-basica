@@ -1,13 +1,15 @@
-DECLARE
-  CONTA      NUMBER := 0;
-BEGIN
-  <<INICIO>>
-  CONTA := CONTA + 1;
-  IF CONTA < 5 THEN
-    begin
-        :msg2 := :msg2||' - '|| conta;
-        GOTO INICIO;
-    end;
-  END IF;
-END;
+declare
+    v_nome FUNC.NM_FUNC%TYPE;
+    v_sal FUNC.VL_SAL%TYPE;
+begin
+    select NM_FUNC, VL_SAL
+    INTO v_nome, v_sal
+    From FUNC;
+    dbms_output.put_line(v_nome||' '||v_sal);
+exception
+    when no_data_found then
+        dbms_output.put_line('Funcionario nao Cadastrado');
+    when too_many_rows then
+        dbms_output.put_line('Retornou muitos registros');
+end;
 /

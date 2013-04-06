@@ -1,0 +1,62 @@
+16:46:48 Fabricio Nogueira: SET verify OFF
+16:46:51 Fabricio Nogueira: SET serveroutput ON
+16:47:12 Fabricio Nogueira: DEFINE p_n = 3
+16:47:24 Fabricio Nogueira: VARIABLE g_average
+SP2-0552: Bind variable "g_average" not declared.
+16:47:32 Fabricio Nogueira: NUMBER
+SP2-0042: unknown command "NUMBER" - rest of line ignored.
+16:47:32 Fabricio Nogueira: variable g_average number;
+16:47:47 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE FUNCTION 
+  2      average_sal(v_n IN NUMBER)
+  3  RETURN NUMBER
+  4  IS
+  5      CURSOR emp_cursor IS
+  6          SELECT empno, sal
+  7          FROM emp
+  8          ORDER BY sal DESC;
+  9      v_total_sal emp.sal%type := 0;
+ 10      v_counter NUMBER;
+ 11  BEGIN
+ 12      FOR r_emp IN emp_cursor LOOP
+ 13          EXIT WHEN emp_cursor%ROWCOUNT > v_n;
+ 14          v_total_sal := v_total_sal + r_emp.sal;
+ 15          v_counter := emp_cursor%ROWCOUNT;
+ 16          DBMS_OUTPUT.PUT ('Loop = ');
+ 17          DBMS_OUTPUT.PUT (v_counter);
+ 18          DBMS_OUTPUT.PUT ('; Empno = ');
+ 19          DBMS_OUTPUT.PUT (r_emp.empno);
+ 20          DBMS_OUTPUT.NEW_LINE;
+ 21      END LOOP;
+ 22      RETURN (v_total_sal/v_counter);
+ 23* END average_sal;
+16:49:28 Fabricio Nogueira: /
+
+Function created.
+
+16:49:30 Fabricio Nogueira: execute :g_average := average_sal(&p_n);
+Loop = 1; Empno = 7935                                                          
+Loop = 2; Empno = 7839                                                          
+Loop = 3; Empno = 7936                                                          
+
+PL/SQL procedure successfully completed.
+
+16:50:10 Fabricio Nogueira: execute :g_avarege := average_sal(10);
+SP2-0552: Bind variable "G_AVAREGE" not declared.
+16:50:39 Fabricio Nogueira: execute :g_average := average_sal(10);
+Loop = 1; Empno = 7935                                                          
+Loop = 2; Empno = 7839                                                          
+Loop = 3; Empno = 7936                                                          
+Loop = 4; Empno = 7788                                                          
+Loop = 5; Empno = 7902                                                          
+Loop = 6; Empno = 7566                                                          
+Loop = 7; Empno = 7698                                                          
+Loop = 8; Empno = 7782                                                          
+Loop = 9; Empno = 7499                                                          
+Loop = 10; Empno = 7844                                                         
+
+PL/SQL procedure successfully completed.
+
+16:51:04 Fabricio Nogueira: spool off

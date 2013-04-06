@@ -1,0 +1,23 @@
+17:08:34 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      v_nome FUNC.NM_FUNC%TYPE;
+  3      v_sal FUNC.VL_SAL%TYPE;
+  4  begin
+  5      select NM_FUNC, VL_SAL
+  6      INTO v_nome, v_sal
+  7      From FUNC;
+  8      dbms_output.put_line(v_nome||' '||v_sal);
+  9  exception
+ 10      when no_data_found then
+ 11          dbms_output.put_line('Funcionario nao Cadastrado');
+ 12      when too_many_rows then
+ 13          dbms_output.put_line('Retornou muitos registros');
+ 14* end;
+17:09:57 Fabricio Nogueira: /
+Retornou muitos registros                                                       
+
+PL/SQL procedure successfully completed.
+
+17:09:58 Fabricio Nogueira: spool off

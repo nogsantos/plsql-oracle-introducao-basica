@@ -1,0 +1,19 @@
+15:30:19 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE FUNCTION 
+  2      pesquisa_salario( v_emp_no IN emp.empno%TYPE)
+  3  RETUR NUMBER
+  4  IS
+  5      v_emp_sal emp.sal%TYPE:= 0;
+  6  BEGIN
+  7      SELECT sal INTO v_emp_sal
+  8      FROM emp
+  9      WHERE empno = v_emp_no;
+ 10      RETURN (v_emp_sal);
+ 11* END pesquisa_salario;
+15:31:53 Fabricio Nogueira: /
+
+Warning: Function created with compilation errors.
+
+15:31:54 Fabricio Nogueira: spool off

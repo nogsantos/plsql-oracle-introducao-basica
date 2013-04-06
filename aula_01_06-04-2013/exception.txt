@@ -1,0 +1,85 @@
+16:58:06 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      v_nome varchar2(30);
+  3      v_sal number(8,2);
+  4  begin
+  5      select NM_FUNC, VL_SAL
+  6      INTO v_nome, v_sal
+  7      From func
+  8      where CD_MAT=122;
+  9      dbms_output.put_line(v_nome||' '||v_sal);
+ 10  exception
+ 11      when no_data_found then
+ 12      dbms_output.put_line('Funcionario nao Cadastrado');
+ 13* end;
+16:58:53 Fabricio Nogueira: /
+Funcionario nao Cadastrado                                                      
+
+PL/SQL procedure successfully completed.
+
+17:00:19 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      v_nome varchar2(30);
+  3      v_sal number(8,2);
+  4  begin
+  5      select NM_FUNC, VL_SAL
+  6      INTO v_nome, v_sal
+  7      From func
+  8      where CD_MAT=&f_mat;
+  9      dbms_output.put_line(v_nome||' '||v_sal);
+ 10  exception
+ 11      when no_data_found then
+ 12      dbms_output.put_line('Funcionario nao Cadastrado');
+ 13* end;
+17:00:52 Fabricio Nogueira: /
+Enter value for f_mat: 5555
+Funcionario nao Cadastrado                                                      
+
+PL/SQL procedure successfully completed.
+
+17:01:00 Fabricio Nogueira: /
+Enter value for f_mat: 7566
+Funcionario nao Cadastrado                                                      
+
+PL/SQL procedure successfully completed.
+
+17:01:19 Fabricio Nogueira: select * from func;
+
+    CD_MAT NM_FUNC      NM_SOBRENOME CD_   NR_RAMAL DT_ADM                      
+---------- ------------ ------------ --- ---------- ------------------          
+  NR_CARGO     NR_GIT I DT_NASC                VL_SAL                           
+---------- ---------- - ------------------ ----------                           
+NM_FOTO                                                                         
+--------------------------------------------------------------------------------
+        11 TESTE        TESTE        D01                                        
+        60          1   12-JAN-65                                                                                                                               
+
+33 rows selected.
+
+17:01:46 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      v_nome varchar2(30);
+  3      v_sal number(8,2);
+  4  begin
+  5      select NM_FUNC, VL_SAL
+  6      INTO v_nome, v_sal
+  7      From func
+  8      where CD_MAT=&mat;
+  9      dbms_output.put_line(v_nome||' '||v_sal);
+ 10  exception
+ 11      when no_data_found then
+ 12      dbms_output.put_line('Funcionario nao Cadastrado');
+ 13* end;
+17:02:59 Fabricio Nogueira: /
+Enter value for mat: 11
+TESTE                                                                           
+
+PL/SQL procedure successfully completed.
+
+17:03:01 Fabricio Nogueira: spool off

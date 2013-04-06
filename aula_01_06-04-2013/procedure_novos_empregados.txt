@@ -1,0 +1,24 @@
+14:53:52 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE PROCEDURE novos_empregados(
+  2      v_emp_no IN emp.empno%TYPE,
+  3      v_emp_name IN emp.ename%TYPE,
+  4      v_emp_job IN emp.job%TYPE,
+  5      v_mgr_no IN emp.mgr%TYPE,
+  6      v_emp_hiredate IN emp.hiredate%TYPE,
+  7      v_emp_sal IN emp.sal%TYPE,
+  8      v_emp_comm IN emp.comm%TYPE,
+  9      v_dept_no IN emp.deptno%TYPE
+ 10  )
+ 11  IS
+ 12      BEGIN
+ 13          INSERT INTO emp (empno, ename, job, mgr, hiredate, sal, comm, deptno )
+ 14          VALUES ( v_emp_no, v_emp_name, v_emp_job, v_mgr_no,v_emp_hiredate, v_emp_sal, v_emp_comm, v_dept_no);
+ 15      COMMIT WORK;
+ 16* END novos_empregados;
+14:55:51 Fabricio Nogueira: /
+
+Procedure created.
+
+14:55:52 Fabricio Nogueira: spool off

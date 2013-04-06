@@ -1,0 +1,261 @@
+15:15:45 Fabricio Nogueira: variable msg varchar2(1000);
+15:16:03 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1* select emp_no from emp
+15:16:48 Fabricio Nogueira: /
+select emp_no from emp
+       *
+ERROR at line 1:
+ORA-00904: "EMP_NO": invalid identifier 
+
+
+15:16:50 Fabricio Nogueira: desc emp
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+15:16:56 Fabricio Nogueira: select empno from emp;
+
+     EMPNO                                                                      
+----------                                                                      
+      7369                                                                      
+      7499                                                                      
+      7521                                                                      
+      7566                                                                      
+      7654                                                                      
+      7698                                                                      
+      7782                                                                      
+      7788                                                                      
+      7839                                                                      
+      7844                                                                      
+      7876                                                                      
+
+     EMPNO                                                                      
+----------                                                                      
+      7900                                                                      
+      7902                                                                      
+      7934                                                                      
+
+14 rows selected.
+
+15:17:07 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%type := &cod;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  8      :msg = vNome||' - '||vSal||' - '||vComm;
+  9* end;
+15:21:15 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   2:     vEmpNo emp.empno%type := &cod;
+new   2:     vEmpNo emp.empno%type := 7934;
+    :msg = vNome||' - '||vSal||' - '||vComm;
+         *
+ERROR at line 8:
+ORA-06550: line 8, column 10:
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+:= . ( @ % ; indicator
+ORA-06550: line 8, column 44:
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+. ( ) , * @ % & - + / at mod remainder rem <an exponent (**)> 
+and or || 
+
+
+15:21:23 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%type := &cod;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  8      :msg = vNome||' - '||vSal||' - '||vComm;
+  9* end;
+15:21:43 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%typed;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      vEmpNo := &cod;
+  8      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  9      :msg = vNome||' - '||vSal||' - '||vComm;
+ 10* end;
+15:22:36 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   7:     vEmpNo := &cod;
+new   7:     vEmpNo := 7934;
+    :msg = vNome||' - '||vSal||' - '||vComm;
+         *
+ERROR at line 9:
+ORA-06550: line 9, column 10:
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+:= . ( @ % ; indicator
+ORA-06550: line 9, column 44:
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+. ( ) , * @ % & - + / at mod remainder rem <an exponent (**)> 
+and or || 
+
+
+15:22:49 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%typed;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      vEmpNo := &cod;
+  8      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  9      :msg := vNome||' - '||vSal||' - '||vComm;
+ 10* end;
+15:23:10 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   7:     vEmpNo := &cod;
+new   7:     vEmpNo := 7934;
+    vEmpNo emp.empno%typed;
+                     *
+ERROR at line 2:
+ORA-06550: line 2, column 22:
+PLS-00208: identifier 'TYPED' is not a legal cursor attribute
+ORA-06550: line 2, column 12:
+PL/SQL: Item ignored
+ORA-06550: line 7, column 5:
+PLS-00320: the declaration of the type of this expression is incomplete or
+malformed
+ORA-06550: line 7, column 5:
+PL/SQL: Statement ignored
+ORA-06550: line 8, column 24:
+PLS-00320: the declaration of the type of this expression is incomplete or
+malformed
+ORA-06550: line 8, column 5:
+PL/SQL: Statement ignored 
+
+
+15:23:20 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%type;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      vEmpNo := &cod;
+  8      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  9      :msg := vNome||' - '||vSal||' - '||vComm;
+ 10* end;
+15:23:43 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   7:     vEmpNo := &cod;
+new   7:     vEmpNo := 7934;
+declare
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at line 8 
+
+
+15:23:47 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%type;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      vEmpNo := &cod;
+  8      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  9      :msg := vNome||' - '||vSal||' - '||vComm;
+ 10* end;
+15:24:22 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   7:     vEmpNo := &cod;
+new   7:     vEmpNo := 7934;
+declare
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at line 8 
+
+
+15:24:26 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vEmpNo emp.empno%type := &cod;
+  3      vNome emp.empno%type;
+  4      vSal emp.sal%type;
+  5      vComm emp.comm%type;
+  6  begin
+  7      pesquisa_empregado(vEmpNo, vNome, vSal, vComm);
+  8      :msg := vNome||' - '||vSal||' - '||vComm;
+  9* end;
+15:26:10 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   2:     vEmpNo emp.empno%type := &cod;
+new   2:     vEmpNo emp.empno%type := 7934;
+declare
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at line 7 
+
+
+15:26:14 Fabricio Nogueira: /
+Enter value for cod: 7369
+old   2:     vEmpNo emp.empno%type := &cod;
+new   2:     vEmpNo emp.empno%type := 7369;
+declare
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at line 7 
+
+
+15:26:44 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      v_empno emp.empno%TYPE := &cod;
+  3      V_NOME emp.ename%TYPE;
+  4      v_sal emp.sal%TYPE;
+  5      v_comm emp.comm%TYPE;
+  6  BEGIN
+  7      pesquisa_empregado(v_empno, v_nome, v_sal, v_comm);
+  8      :msg := v_nome || ' - ' || v_sal || ' - ' || V_comm;
+  9* end;
+15:28:12 Fabricio Nogueira: /
+Enter value for cod: 7934
+old   2:     v_empno emp.empno%TYPE := &cod;
+new   2:     v_empno emp.empno%TYPE := 7934;
+
+PL/SQL procedure successfully completed.
+
+15:28:16 Fabricio Nogueira: print msg;
+
+MSG                                                                             
+--------------------------------------------------------------------------------
+MILLER - 1430 -                                                                 
+
+15:28:23 Fabricio Nogueira: spool off

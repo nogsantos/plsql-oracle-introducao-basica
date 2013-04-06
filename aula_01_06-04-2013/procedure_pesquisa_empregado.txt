@@ -1,0 +1,21 @@
+14:56:38 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE PROCEDURE pesquisa_empregado(
+  2      v_emp_no IN emp.empno%TYPE,
+  3      v_emp_name OUT emp.ename%TYPE,
+  4      v_emp_sal OUT emp.sal%TYPE,
+  5      v_emp_comm OUT emp.comm%TYPE
+  6  )
+  7  IS
+  8      BEGIN
+  9          SELECT ename, sal, comm
+ 10          INTO v_emp_name, v_emp_sal, v_emp_comm
+ 11          FROM emp
+ 12          WHERE empno = v_emp_no;
+ 13* END pesquisa_empregado;
+14:57:58 Fabricio Nogueira: /
+
+Procedure created.
+
+14:58:00 Fabricio Nogueira: spool off
