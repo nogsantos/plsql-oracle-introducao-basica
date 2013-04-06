@@ -1,0 +1,33 @@
+16:11:43 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE FUNCTION 
+  2      loc_dept(p_emp_depto IN emp.empno%type)
+  3  RETURN NUMBER
+  4  IS
+  5      emp_dept emp.deptno%type;
+  6  BEGIN
+  7      SELECT deptno INTO emp_dept
+  8      FROM emp
+  9      WHERE empno = p_emp_depto;
+ 10  RETURN(emp_dept);
+ 11* END loc_dept;
+16:28:55 Fabricio Nogueira: /
+
+Function created.
+
+16:31:17 Fabricio Nogueira: exec novos_empregados(next_codigo_emp,'jose','prg',7566,sysdate,5000,600,loc_dept(7566));
+
+PL/SQL procedure successfully completed.
+
+16:32:25 Fabricio Nogueira: select * from emp where ename = 'jose' and hiredate = sysdate;
+
+no rows selected
+
+16:33:12 Fabricio Nogueira: select * from emp where lower(ename) = 'jose';
+
+     EMPNO ENAME      JOB              MGR HIREDATE                  SAL    COMM     DEPTNO       
+---------- ---------- --------- ---------- ------------------ ---------- ---------- ----------                                                           
+      7936 jose       prg             7566 06-APR-13                5000    600         20                                                           
+                                                                                
+16:33:55 Fabricio Nogueira: spool off
