@@ -1,0 +1,48 @@
+15:40:47 Fabricio Nogueira: desc emp
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+15:40:53 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  create or replace function next_codigo_emp return NUMBER
+  2  is
+  3      codigo emp.empno%type;
+  4      begin
+  5      select max(empno) + 1 into codigo
+  6      from emp;
+  7      return codigo;
+  8* end next_codigo_emp;
+15:43:42 Fabricio Nogueira: /
+
+Function created.
+
+15:43:43 Fabricio Nogueira: select next_codigo_emp from dual;
+
+NEXT_CODIGO_EMP                                                                 
+---------------                                                                 
+           7935                                                                 
+
+15:43:57 Fabricio Nogueira: exec novos_empregados(next_codigo_emp, 'fabricio','dba',7844,sysdate, 10000, 600, 10);
+
+PL/SQL procedure successfully completed.
+
+15:45:56 Fabricio Nogueira: select * from emp where empno = 7935;
+
+     EMPNO ENAME      JOB              MGR HIREDATE                  SAL  COMM     DEPTNO                                                           
+---------- ---------- --------- ---------- ------------------ ---------- ---------- ----------                                                           
+      7935 fabricio   dba             7844 06-APR-13               10000 600         10                                                                      
+
+15:46:21 Fabricio Nogueira: commit;
+
+Commit complete.
+
+15:46:34 Fabricio Nogueira: spool off;
