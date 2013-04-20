@@ -1,0 +1,29 @@
+10:11:35 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS          NUMBER;
+  3      SALARIO        NUMBER := 3000;
+  4      PROCEDURE INSS(SAL IN NUMBER, VALOR IN OUT NOCOPY NUMBER) IS
+  5          BEGIN
+  6              VALOR := SAL * 0.08;
+  7              IF VALOR >= 1000 THEN
+  8                  VALOR := 1000;
+  9              END IF;
+ 10       END INSS;
+ 11  BEGIN
+ 12      INSS(3000, VINSS);
+ 13      INSS(SALARIO, VINSS);
+ 14      :MSG := VINSS;
+ 15* END;
+10:13:00 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:13:01 Fabricio Nogueira: print msg;
+
+MSG                                                                   
+----------------------------------------------------------------------
+240                                                                   
+
+10:13:07 Fabricio Nogueira: spool off

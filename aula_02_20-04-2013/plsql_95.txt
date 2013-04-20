@@ -1,0 +1,36 @@
+09:44:31 Fabricio Nogueira: variable msg varchar2(100);
+09:44:57 Fabricio Nogueira: set linesize 70;
+09:45:11 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      TYPE TREG IS RECORD (NOME VARCHAR2(30),
+  3      MAT NUMBER NOT NULL := 0,
+  4      DEP DEPTO.CD_DEPTO%TYPE);
+  5      VREG TREG;
+  6      CURSOR C1 IS SELECT NM_FUNC||' '||NM_SOBRENOME, CD_MAT,
+  7      CD_DEPTO FROM FUNC;
+  8  BEGIN
+  9      OPEN C1;
+ 10      :MSG := '';
+ 11      LOOP
+ 12          FETCH C1 INTO VREG;
+ 13          EXIT WHEN C1%NOTFOUND;
+ 14          IF VREG.MAT > 200 AND VREG.DEP IN ('D11', 'E11') THEN
+ 15              :MSG := :MSG || VREG.NOME ||'; ';
+ 16          END IF;
+ 17      END LOOP;
+ 18* END;
+09:46:28 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+09:46:30 Fabricio Nogueira: print msg;
+
+MSG                                                                   
+----------------------------------------------------------------------
+WILIAM JONES; JOANA LUZ; ELINE SEVERO; JOAO PONTES; FELIPE SARAIVA; MA
+RINA SALGADO;                                                         
+                                                                      
+
+09:46:35 Fabricio Nogueira: spool off

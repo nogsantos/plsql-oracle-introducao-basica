@@ -1,0 +1,20 @@
+09:37:30 Fabricio Nogueira: set serveroutput on;
+09:37:39 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  begin
+  2      update FUNC set
+  3      VL_SAL=240
+  4      where VL_SAL<200;
+  5      if SQL%FOUND then
+  6          commit;
+  7      else
+  8          dbms_output.put_line('Valores nao Encontrados');
+  9      end if;
+ 10* end;
+09:38:54 Fabricio Nogueira: /
+Valores nao Encontrados                                                         
+
+PL/SQL procedure successfully completed.
+
+09:38:56 Fabricio Nogueira: spool off

@@ -1,0 +1,17 @@
+09:10:04 Fabricio Nogueira: select cd_mat, rowid from func where rownum < 10;
+
+    CD_MAT ROWID                                                                
+---------- ------------------                                                   
+        10 AAAE8PAAEAAAAPPAAA                                                   
+        11 AAAE8PAAEAAAAPMAAA                                                   
+        20 AAAE8PAAEAAAAPPAAB                                                   
+        30 AAAE8PAAEAAAAPPAAC                                                   
+        50 AAAE8PAAEAAAAPPAAD                                                   
+        60 AAAE8PAAEAAAAPPAAE                                                   
+        70 AAAE8PAAEAAAAPPAAF                                                   
+        90 AAAE8PAAEAAAAPPAAG                                                   
+       100 AAAE8PAAEAAAAPPAAH                                                   
+
+9 rows selected.
+
+09:10:49 Fabricio Nogueira: spool off

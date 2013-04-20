@@ -1,0 +1,30 @@
+CREATE OR REPLACE PROCEDURE VERIFICA IS
+    TYPE TAB_NOME IS TABLE OF VARCHAR2(100) INDEX BY BINARY_INTEGER;
+    TYPE TAB_DEPTO IS TABLE OF VARCHAR2(3) INDEX BY BINARY_INTEGER;
+    VNOME              TAB_NOME;
+    VDEPTO             TAB_DEPTO;
+    TEXTO              VARCHAR2(100);
+    FUNCTION NOME(PDEPTO IN TAB_DEPTO) RETURN TAB_NOME IS
+        NM_AUX           VARCHAR2(100);
+        PNOME            TAB_NOME;
+     BEGIN
+         FOR I IN 1..PDEPTO.COUNT 
+         LOOP
+            BEGIN
+                SELECT NM_DEPTO INTO NM_AUX FROM DEPTO
+                WHERE CD_DEPTO = PDEPTO(I);
+                PNOME(I) := NM_AUX;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                PNOME(I) := 'DEPARTAMENTO INEXISTENTE';
+            END;
+        END LOOP;
+        RETURN PNOME;
+    END NOME;
+BEGIN
+    VDEPTO(1) := 'A00';
+    VDEPTO(2) := 'A01';
+    VNOME     := NOME(VDEPTO);
+    TEXTO     := NOME(VDEPTO)(2);
+END VERIFICA;
+/

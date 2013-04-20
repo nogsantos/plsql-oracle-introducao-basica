@@ -1,0 +1,33 @@
+10:13:46 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VPREC       NUMBER := 0.07;
+  3      PROCEDURE CALC (VALOR IN NUMBER := 0.10) IS
+  4          BEGIN
+  5              :MSG := :MSG || TO_CHAR(VALOR, '099D00')|| '-';
+  6              IF VALOR <= 1 THEN
+  7                  UPDATE FUNC 
+  8                  SET VL_SAL = VL_SAL * VALOR + VL_SAL;
+  9              ELSE
+ 10                 UPDATE FUNC
+ 11                 SET VL_SAL = (VL_SAL * VALOR) / 100 + VL_SAL;
+ 12              END IF;
+ 13       END CALC;
+ 14  BEGIN
+ 15      :MSG := '';
+ 16      CALC(30);
+ 17      CALC(VPREC);
+ 18      CALC;
+ 19* END;
+10:15:28 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:15:29 Fabricio Nogueira: print msg;
+
+MSG                                                                   
+----------------------------------------------------------------------
+ 030.00- 000.07- 000.10-                                              
+
+10:15:32 Fabricio Nogueira: spool off

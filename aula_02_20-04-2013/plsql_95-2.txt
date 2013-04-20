@@ -1,0 +1,100 @@
+09:48:32 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      TYPE TREG IS RECORD (NOME VARCHAR2(30),
+  3      MAT NUMBER NOT NULL := 0,
+  4      DEP DEPTO.CD_DEPTO%TYPE);
+  5      VREG TREG;
+  6      CURSOR C1 IS SELECT NM_FUNC||' '||NM_SOBRENOME, CD_MAT,
+  7      CD_DEPTO FROM FUNC;
+  8  BEGIN
+  9      OPEN C1;
+ 10      LOOP
+ 11          FETCH C1 INTO VREG;
+ 12          EXIT WHEN C1%NOTFOUND;
+ 13          IF VREG.MAT > 200 AND VREG.DEP IN ('D11', 'E11') THEN
+ 14              dbms.output.put(VREG.NOME);
+ 15              dbms.output.put(";");
+ 16          END IF;
+ 17      END LOOP;
+ 18      dbms.output.new_line;
+ 19* END;
+09:53:18 Fabricio Nogueira: /
+            dbms.output.put(VREG.NOME);
+            *
+ERROR at line 14:
+ORA-06550: line 14, column 13:
+PLS-00201: identifier 'DBMS.OUTPUT' must be declared
+ORA-06550: line 14, column 13:
+PL/SQL: Statement ignored
+ORA-06550: line 15, column 30:
+PLS-00201: identifier ';' must be declared
+ORA-06550: line 15, column 13:
+PL/SQL: Statement ignored
+ORA-06550: line 18, column 5:
+PLS-00201: identifier 'DBMS.OUTPUT' must be declared
+ORA-06550: line 18, column 5:
+PL/SQL: Statement ignored 
+
+
+09:53:21 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      TYPE TREG IS RECORD (NOME VARCHAR2(30),
+  3      MAT NUMBER NOT NULL := 0,
+  4      DEP DEPTO.CD_DEPTO%TYPE);
+  5      VREG TREG;
+  6      CURSOR C1 IS SELECT NM_FUNC||' '||NM_SOBRENOME, CD_MAT,
+  7      CD_DEPTO FROM FUNC;
+  8  BEGIN
+  9      OPEN C1;
+ 10      LOOP
+ 11          FETCH C1 INTO VREG;
+ 12          EXIT WHEN C1%NOTFOUND;
+ 13          IF VREG.MAT > 200 AND VREG.DEP IN ('D11', 'E11') THEN
+ 14              dbms_output.put(VREG.NOME);
+ 15              dbms_output.put(";");
+ 16          END IF;
+ 17      END LOOP;
+ 18      dbms_output.new_line;
+ 19* END;
+09:54:06 Fabricio Nogueira: /
+            dbms_output.put(";");
+                             *
+ERROR at line 15:
+ORA-06550: line 15, column 30:
+PLS-00201: identifier ';' must be declared
+ORA-06550: line 15, column 13:
+PL/SQL: Statement ignored 
+
+
+09:54:07 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      TYPE TREG IS RECORD (NOME VARCHAR2(30),
+  3      MAT NUMBER NOT NULL := 0,
+  4      DEP DEPTO.CD_DEPTO%TYPE);
+  5      VREG TREG;
+  6      CURSOR C1 IS SELECT NM_FUNC||' '||NM_SOBRENOME, CD_MAT,
+  7      CD_DEPTO FROM FUNC;
+  8  BEGIN
+  9      OPEN C1;
+ 10      LOOP
+ 11          FETCH C1 INTO VREG;
+ 12          EXIT WHEN C1%NOTFOUND;
+ 13          IF VREG.MAT > 200 AND VREG.DEP IN ('D11', 'E11') THEN
+ 14              dbms_output.put(VREG.NOME||';');
+ 15          END IF;
+ 16      END LOOP;
+ 17      dbms_output.new_line;
+ 18* END;
+09:54:47 Fabricio Nogueira: /
+WILIAM JONES;JOANA LUZ;ELINE SEVERO;JOAO PONTES;FELIPE SARAIVA;MARINA 
+SALGADO;                                                              
+
+PL/SQL procedure successfully completed.
+
+09:54:50 Fabricio Nogueira: spool off

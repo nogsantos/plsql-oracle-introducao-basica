@@ -1,0 +1,47 @@
+09:16:45 Fabricio Nogueira: variable p1 varchar2(500);
+09:16:57 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2        WVARCHAR       VARCHAR2(20);
+  3        WVARCHAR2      VARCHAR2(20) := '05/02/87';
+  4        WDATE          DATE;
+  5        WDATE2         DATE;
+  6  BEGIN
+  7        WDATE     := TO_DATE('01011987', 'DDMMYYYY');
+  8        WVARCHAR  := WDATE;
+  9        WDATE2    := WVARCHAR2;
+ 10       :P1       := WVARCHAR||' - '||TO_CHAR(WDATE2, 'DDMMYYYY');
+ 11* END;
+09:17:54 Fabricio Nogueira: /
+DECLARE
+*
+ERROR at line 1:
+ORA-01843: not a valid month
+ORA-06512: at line 9 
+
+09:18:09 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2        WVARCHAR       VARCHAR2(20);
+  3        WVARCHAR2      VARCHAR2(20) := '05 FEB 1987';
+  4        WDATE          DATE;
+  5        WDATE2         DATE;
+  6  BEGIN
+  7        WDATE     := TO_DATE('01011987', 'DDMMYYYY');
+  8        WVARCHAR  := WDATE;
+  9        WDATE2    := WVARCHAR2;
+ 10       :P1       := WVARCHAR||' - '||TO_CHAR(WDATE2, 'DDMMYYYY');
+ 11* END;
+09:18:55 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+09:18:58 Fabricio Nogueira: print p1;
+
+P1                                                                              
+--------------------------------------------------------------------------------
+01-JAN-87 - 05021987                                                            
+
+09:19:05 Fabricio Nogueira: spool off

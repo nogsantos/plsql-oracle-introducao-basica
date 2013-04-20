@@ -1,0 +1,20 @@
+08:58:10 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2    WLONG        LONG(32767);
+  3    BEGIN
+  4      WLONG    := 'ABC';
+  5        :P1      := '*'||WLONG||'*';
+  6* END;
+08:58:37 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+08:58:39 Fabricio Nogueira: print p1;
+
+P1                                                                              
+--------------------------------------------------------------------------------
+*ABC*                                                                           
+
+08:58:47 Fabricio Nogueira: spool off

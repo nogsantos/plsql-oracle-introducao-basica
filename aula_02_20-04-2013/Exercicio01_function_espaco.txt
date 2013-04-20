@@ -1,0 +1,45 @@
+Criar uma função que receba uma string de tamanho até 15 e retorne a mesma 
+string com as letras separadas por um banco.
+
+10:49:01 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  create or replace function espaco(p_letra in varchar2) 
+  2     return varchar2 
+  3  is
+  4      va_letra varchar2(200);
+  5      t_letra varchar2(200);
+  6  begin
+  7      va_letra:='';
+  8      t_letra:= '';
+  9      for cont in 1..length(p_letra)
+ 10          loop
+ 11              t_letra:= '';
+ 12              t_letra:= substr(p_letra,cont,1);
+ 13              va_letra:= va_letra||t_letra||' ';
+ 14           end loop;
+ 15       return(va_letra);
+ 16* end;
+10:50:58 Fabricio Nogueira: /
+
+Function created.
+
+10:51:00 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      nome varchar2(100):='&nom';
+  3      v1 varchar2(2000);
+  4  begin
+  5      v1 := espaco(nome);
+  6      dbms_output.put_line(v1);
+  7* end;
+10:51:47 Fabricio Nogueira: /
+Enter value for nom: Fabricio
+old   2:     nome varchar2(100):='&nom';
+new   2:     nome varchar2(100):='Fabricio';
+F a b r i c i o                                                       
+
+PL/SQL procedure successfully completed.
+
+10:51:54 Fabricio Nogueira: spool off

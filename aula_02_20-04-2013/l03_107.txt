@@ -1,0 +1,91 @@
+10:28:10 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS           NUMBER;
+  3      PROCEDURE CALC (TIPO IN VARCHAR2 := 'P', VALOR IN NUMBER := 0.10) IS
+  4          BEGIN
+  5            :MSG := :MSG || 'PRIMEIRA CALC; ';
+  6            IF UPPER(TIPO) = 'P' THEN
+  7                UPDATE FUNC
+  8                    SET VL_SAL = VL_SAL * VALOR + VL_SAL;
+  9            ELSE
+ 10                UPDATE FUNC
+ 11                    SET VL_SAL = (VL_SAL * VALOR) / 100 + VL_SAL;
+ 12            END IF;
+ 13        END CALC;
+ 14        PROCEDURE CALC (SAL IN NUMBER := 2000, VALOR OUT NUMBER) IS
+ 15            BEGIN
+ 16                VALOR := SAL * 0.08;
+ 17                :MSG := :MSG || 'SEGUNDA CALC; ';
+ 18            END CALC;
+ 19  BEGIN
+ 20      :MSG := '';
+ 21      CALC;
+ 22      CALC('M', 30);
+ 23      CALC('M');
+ 24      CALC(3000, VINSS);
+ 25      --CALC(VALOR => 30);
+ 26      --CALC(VALOR => VINSS);
+ 27* END;
+10:30:11 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:30:12 Fabricio Nogueira: print msg;
+
+MSG                                                                   
+----------------------------------------------------------------------
+PRIMEIRA CALC; PRIMEIRA CALC; PRIMEIRA CALC; SEGUNDA CALC;            
+
+10:30:19 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS           NUMBER;
+  3      PROCEDURE CALC (TIPO IN VARCHAR2 := 'P', VALOR IN NUMBER := 0.10) IS
+  4          BEGIN
+  5            :MSG := :MSG || 'PRIMEIRA CALC; ';
+  6            IF UPPER(TIPO) = 'P' THEN
+  7                UPDATE FUNC
+  8                    SET VL_SAL = VL_SAL * VALOR + VL_SAL;
+  9            ELSE
+ 10                UPDATE FUNC
+ 11                    SET VL_SAL = (VL_SAL * VALOR) / 100 + VL_SAL;
+ 12            END IF;
+ 13        END CALC;
+ 14        PROCEDURE CALC (SAL IN NUMBER := 2000, VALOR OUT NUMBER) IS
+ 15            BEGIN
+ 16                VALOR := SAL * 0.08;
+ 17                :MSG := :MSG || 'SEGUNDA CALC; ';
+ 18            END CALC;
+ 19  BEGIN
+ 20      :MSG := '';
+ 21      CALC;
+ 22      CALC('M', 30);
+ 23      CALC('M');
+ 24      CALC(3000, VINSS);
+ 25      CALC(VALOR => 30);
+ 26      CALC(VALOR => VINSS);
+ 27* END;
+10:30:30 Fabricio Nogueira: /
+    CALC(VALOR => 30);
+    *
+ERROR at line 25:
+ORA-06550: line 25, column 5:
+PLS-00307: too many declarations of 'CALC' match this call
+ORA-06550: line 25, column 5:
+PL/SQL: Statement ignored
+ORA-06550: line 26, column 5:
+PLS-00307: too many declarations of 'CALC' match this call
+ORA-06550: line 26, column 5:
+PL/SQL: Statement ignored 
+
+
+10:30:31 Fabricio Nogueira: print msg;
+
+MSG                                                                   
+----------------------------------------------------------------------
+PRIMEIRA CALC; PRIMEIRA CALC; PRIMEIRA CALC; SEGUNDA CALC;            
+
+10:30:40 Fabricio Nogueira: spool off

@@ -1,0 +1,57 @@
+16:17:57 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE PROCEDURE TESTE (
+  2      MATRICULA IN NUMBER, 
+  3      PERCENTUAL IN NUMBER := 0.1
+  4  ) IS
+  5      VPERC
+  6      NUMBER;
+  7  BEGIN
+  8      IF PERCENTUAL > 1 THEN
+  9          VPERC := PERCENT / 100;
+ 10      ELSIF PERCENTUAL > 0 THEN
+ 11          VPERC := PERCENTUAL;
+ 12      END IF;
+ 13      IF VPERC IS NOT NULL THEN
+ 14          UPDATE FUNC
+ 15          SET VL_SAL = VL_SAL * VPERC;
+ 16          COMMIT;
+ 17      END IF;
+ 18* END;
+16:19:10 Fabricio Nogueira: /
+
+Warning: Procedure created with compilation errors.
+
+16:19:11 Fabricio Nogueira: show errors;
+Errors for PROCEDURE TESTE:
+
+LINE/COL                                                              
+--------                                                              
+ERROR                                                                 
+-----------------------------------------------------------------     
+9/9                                                                   
+PL/SQL: Statement ignored                                             
+                                                                      
+9/18                                                                  
+PLS-00201: identifier 'PERCENT' must be declared                      
+                                                                      
+16:19:24 Fabricio Nogueira: spool off
+
+correção:
+
+CREATE OR REPLACE PROCEDURE TESTE 
+  (MATRICULA IN NUMBER, PERCENTUAL IN NUMBER := 0.1) IS
+VPERC        NUMBER;
+BEGIN
+  IF PERCENTUAL > 1 THEN
+     VPERC := PERCENTUAL / 100;
+  ELSIF PERCENTUAL > 0 THEN
+     VPERC := PERCENTUAL;
+  END IF;
+  IF VPERC IS NOT NULL THEN
+     UPDATE FUNC
+        SET VL_SAL = VL_SAL * VPERC;
+     COMMIT;
+  END IF;
+END;

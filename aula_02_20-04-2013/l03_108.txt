@@ -1,0 +1,33 @@
+16:00:41 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  CREATE OR REPLACE FUNCTION NOME(PDEPTO IN VARCHAR2) RETURN VARCHAR2 IS
+  2      NOME VARCHAR2(100);
+  3  BEGIN
+  4      SELECT NM_DEPTO INTO NOME
+  5      FROM DEPTO
+  6      WHERE CD_DEPTO = PDEPTO;
+  7      RETURN NOME;
+  8  EXCEPTION WHEN NO_DATA_FOUND THEN
+  9      NOME := 'DEPARTAMENTO INEXISTENTE';
+ 10      RETURN NOME;
+ 11* END;
+16:02:25 Fabricio Nogueira: /
+
+Function created.
+
+16:03:27 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  declare
+  2      vnome varchar(150);
+  3  begin
+  4      vnome := nome('asdrubal');
+  5      dbms_output.put_line(vnome);
+  6* end;
+16:05:59 Fabricio Nogueira: /
+DEPARTAMENTO INEXISTENTE                                              
+
+PL/SQL procedure successfully completed.
+
+16:06:00 Fabricio Nogueira: spool off

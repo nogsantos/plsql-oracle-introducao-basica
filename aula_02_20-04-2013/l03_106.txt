@@ -1,0 +1,43 @@
+10:25:35 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      PROCEDURE B (P1 IN NUMBER);
+  3      PROCEDURE A (P1 IN NUMBER) IS
+  4  BEGIN
+  5      IF P1 > 10 THEN
+  6          B(P1);
+  7      ELSE 
+  8          :MSG := :MSG ||'A-'||P1||'; ';
+  9      END IF;
+ 10  END;
+ 11  PROCEDURE B(P1 IN NUMBER) IS
+ 12      BEGIN
+ 13          IF P1 <= 10 THEN
+ 14              A(P1);
+ 15          ELSE
+ 16             :MSG := :MSG||'B-'||P1||'; ';
+ 17          END IF;
+ 18      END;
+ 19  BEGIN
+ 20      :MSG := '';
+ 21      A('&VALOR');
+ 22      B('&VALOR');
+ 23* END;
+10:27:28 Fabricio Nogueira: /
+Enter value for valor: 1000
+old  21:     A('&VALOR');
+new  21:     A('1000');
+Enter value for valor: 1121
+old  22:     B('&VALOR');
+new  22:     B('1121');
+
+PL/SQL procedure successfully completed.
+
+10:27:37 Fabricio Nogueira: print msg;
+
+MSG                                                                   
+----------------------------------------------------------------------
+B-1000; B-1121;                                                       
+
+10:27:44 Fabricio Nogueira: spool off

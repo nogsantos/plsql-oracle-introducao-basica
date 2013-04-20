@@ -1,0 +1,86 @@
+10:20:39 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS        NUMBER := 10;
+  3      PROCEDURE INSS(SAL IN NUMBER := 2000, VALOR OUT NUMBER) IS
+  4         BEGIN
+  5            VALOR := SAL * 0.08;
+  6         END INSS;
+  7  BEGIN
+  8      INSS(3000, VINSS);
+  9      INSS(VALOR => VINSS);
+ 10* END;
+10:23:08 Fabricio Nogueira: /
+
+PL/SQL procedure successfully completed.
+
+10:23:09 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS        NUMBER := 10;
+  3      PROCEDURE INSS(SAL IN NUMBER := 2000, VALOR OUT NUMBER) IS
+  4         BEGIN
+  5            VALOR := SAL * 0.08;
+  6         END INSS;
+  7  BEGIN
+  8      INSS(3000, VINSS);
+  9      dbms_output.put_line(INSS(VALOR => VINSS));
+ 10* END;
+10:23:59 Fabricio Nogueira: /
+    dbms_output.put_line(INSS(VALOR => VINSS));
+                         *
+ERROR at line 9:
+ORA-06550: line 9, column 26:
+PLS-00222: no function with name 'INSS' exists in this scope
+ORA-06550: line 9, column 5:
+PL/SQL: Statement ignored 
+
+
+10:24:00 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS        NUMBER := 10;
+  3      PROCEDURE INSS(SAL IN NUMBER := 2000, VALOR OUT NUMBER) IS
+  4         BEGIN
+  5            VALOR := SAL * 0.08;
+  6         END INSS;
+  7  BEGIN
+  8      INSS(3000, VINSS);
+  9      INSS(VALOR => VINSS);
+ 10      dbms_output.put_line(VALOR);
+ 11* END;
+10:24:44 Fabricio Nogueira: 
+10:24:45 Fabricio Nogueira: 
+10:24:45 Fabricio Nogueira: /
+    dbms_output.put_line(VALOR);
+                         *
+ERROR at line 10:
+ORA-06550: line 10, column 26:
+PLS-00201: identifier 'VALOR' must be declared
+ORA-06550: line 10, column 5:
+PL/SQL: Statement ignored 
+
+
+10:24:46 Fabricio Nogueira: ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2      VINSS        NUMBER := 10;
+  3      PROCEDURE INSS(SAL IN NUMBER := 2000, VALOR OUT NUMBER) IS
+  4         BEGIN
+  5            VALOR := SAL * 0.08;
+  6         END INSS;
+  7  BEGIN
+  8      INSS(3000, VINSS);
+  9      INSS(VALOR => VINSS);
+ 10      dbms_output.put_line(VINSS);
+ 11* END;
+10:25:03 Fabricio Nogueira: /
+160                                                                   
+
+PL/SQL procedure successfully completed.
+
+10:25:03 Fabricio Nogueira: spool off
